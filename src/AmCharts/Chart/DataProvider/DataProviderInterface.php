@@ -9,5 +9,5 @@ namespace AmCharts\Chart\DataProvider;
 
 interface DataProviderInterface
 {
-
+  public function toJson();
 }

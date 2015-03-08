@@ -42,6 +42,11 @@ abstract class AbstractGraph implements GraphInterface
      * @var string
      */
     protected $balloonText = '[[value]]';
+    
+    /**
+     * @var boolean
+     */
+//     protected $showBalloon = true;
 
     /**
      * Opacity of fill. Plural form is used to keep the same property names as our Flex charts'.

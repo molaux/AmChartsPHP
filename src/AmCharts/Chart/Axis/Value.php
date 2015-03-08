@@ -22,6 +22,8 @@ class Value extends AbstractAxis
      * @var string
      */
     protected $stackType;
+    
+    protected $unit;
 
     /**
      * Sets true if labels are enabled
@@ -32,6 +34,13 @@ class Value extends AbstractAxis
     public function setLabelsEnabled($enabled = true)
     {
         $this->labelsEnabled = (bool) $enabled;
+
+        return $this;
+    }
+
+    public function setUnit($unit)
+    {
+        $this->unit = $unit;
 
         return $this;
     }

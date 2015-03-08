@@ -19,7 +19,18 @@ class Category extends AbstractAxis
      * @var string
      */
     protected $gridPosition;
+    
+     /**
+     * @var string
+     */
+    protected $minPerdiod;
+    
+    /**
+     * @var boolean
+     */
+    protected $parseDates = false;
 
+    protected $labelFunction;
     /**
      * Sets grid position
      *
@@ -45,6 +56,24 @@ class Category extends AbstractAxis
     public function getGridPosition()
     {
         return $this->gridPosition;
+    }
+    
+    public function setParseDates($ok = true) {
+      $this->parseDates = $ok;
+      return $this;
+    }
+
+    public function getParseDates() {
+      return $this->parseDates;
+    }
+
+    public function setLabelFunction($fcn) {
+      $this->labelFunction = $fcn;
+      return $this;
+    }
+
+    public function getLabelFunction() {
+      return $this->labelFunction;
     }
 
     /**

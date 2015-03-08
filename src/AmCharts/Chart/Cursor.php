@@ -74,6 +74,14 @@ class Cursor
      */
     protected $cursorColor;
     
+    
+    /**
+     * Color of the cursor line.
+     * 
+     * @var Javascript 
+     */
+    protected $categoryBalloonFunction;
+    
     /**
      * Specifies where the cursor line should be placed.
      * On the beginning of the period (day, hour, etc) or in the middle.
@@ -273,6 +281,16 @@ class Cursor
         return $this->categoryBalloonEnabled;
     }
         
+        
+    public function setCategoryBalloonFunction($fcn) {
+      $this->categoryBalloonFunction = $fcn;
+      return $this;
+    }
+
+    public function getCategoryBalloonFunction() {
+      return $this->categoryBalloonFunction;
+    }
+    
     /**
      * Sets and returns text object
      *

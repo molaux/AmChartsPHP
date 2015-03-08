@@ -42,8 +42,8 @@ class DataProvider implements DataProviderInterface
      *
      * @return array
      */
-    public function toArray()
+    public function toJson()
     {
-        return $this->data;
+        return json_encode(array_values($this->data));
     }
 }

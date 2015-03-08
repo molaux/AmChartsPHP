@@ -9,6 +9,7 @@ namespace AmCharts\Chart;
 
 use AmCharts\Chart\Renderer\AbstractRenderer;
 use AmCharts\Manager;
+use AmCharts\Javascript;
 
 class Renderer extends AbstractRenderer
 {
@@ -190,6 +191,8 @@ class Renderer extends AbstractRenderer
                 $value = '[' . implode(',', $value) . ']';
             } elseif (is_bool($value)) {
                 $value = true === $value ? 'true' : 'false';
+            } elseif ($value instanceof Javascript) {
+                $value = "$value";
             } elseif (!is_numeric($value) && $name != 'dataProvider' && $name != 'graph') {
                 $value = "'" . $value . "'";
             }

@@ -80,6 +80,12 @@ abstract class AbstractChart
      * @var AbstractRenderer
      */
     protected $renderer;
+    
+    /**
+     * @var string
+     */
+    protected $dataDateFormat;
+
 
     /**
      * Constructor
@@ -92,6 +98,8 @@ abstract class AbstractChart
         if (null !== $id) {
             $this->setId($id);
         }
+        
+        $this->dataDateFormat = null;
         
         foreach ($attribs as $key => $value) {
             $method = 'set' . ucfirst($key);
@@ -413,10 +421,13 @@ abstract class AbstractChart
 
         $dataProvider = $this->getDataProvider();
         if (null !== $dataProvider) {
-            $data = $dataProvider->toArray();
-            $params['dataProvider'] = json_encode(array_values($data));
+            $params['dataProvider'] = $dataProvider->toJson();
         }
-
+        
+        if(null !== $this->dataDateFormat) {
+            $params['dataDateFormat'] = $this->getDataDateFormat();
+        }
+        
         return $params;
     }
 
@@ -440,6 +451,16 @@ abstract class AbstractChart
         }
 
         return $attributes;
+    }
+    
+    
+    public function setDataDateFormat($format) {
+      $this->dataDateFormat = $format;
+      return $this;
+    }
+
+    public function getDataDateFormat() {
+      return $this->dataDateFormat;
     }
 
     /**
