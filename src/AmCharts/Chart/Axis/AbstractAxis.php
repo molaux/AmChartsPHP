@@ -73,6 +73,11 @@ abstract class AbstractAxis
      * @var Setting\Text
      */
     protected $title;
+    
+    /**
+     * @var integer
+     */
+    protected $minimum;
 
     /**
      * Sets axis alpha
@@ -311,6 +316,29 @@ abstract class AbstractAxis
     public function getGridThickness()
     {
         return $this->gridThickness;
+    }
+    
+        /**
+     * Sets axis minimum
+     *
+     * @param float $minmum
+     * @return AbstractAxis
+     */
+    public function setMinimum($minimum)
+    {
+        $this->minimum = $minimum;
+
+        return $this;
+    }
+
+    /**
+     * Returns grid thickness
+     *
+     * @return integer
+     */
+    public function getMinimum()
+    {
+        return $this->minimum;
     }
 
     /**
