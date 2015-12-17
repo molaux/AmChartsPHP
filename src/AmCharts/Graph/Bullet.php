@@ -42,6 +42,13 @@ class Bullet
     protected $size;
 
     /**
+     * Bullet size field
+     *
+     * @var string
+     */
+    protected $sizeField;
+
+    /**
      * Sets type
      *
      * @param string $type
@@ -71,6 +78,29 @@ class Bullet
         return $this->type;
     }
 
+    /**
+     * Sets size field
+     *
+     * @param string $sizeField
+     * @return Bullet
+     */
+    public function setSizeField($sizeField)
+    {
+        $this->sizeField = (string) $sizeField;
+
+        return $this;
+    }
+
+    /**
+     * Returns size field
+     *
+     * @return string
+     */
+    public function getSizeField()
+    {
+        return $this->sizeField;
+    }
+    
     /**
      * Sets size
      *

@@ -110,10 +110,17 @@ class Renderer extends AbstractRenderer
                 $instructions .= $this->formatObjectAdding($graph->getId(), 'AmGraph', $graph->toArray());
             }
         }
+        
+        if (isset($attributes['valueAxis']) && is_array($attributes['valueAxis'])) {
+            foreach ($attributes['valueAxis'] as $axis) {
+                /* @var $graph \AmCharts\Axis\AbstractAxis */
+                $instructions .= $this->formatObjectAdding($axis->getId(), 'ValueAxis', $axis->toArray());
+            }
+        }
 
         $objects = array(
             array('legend', 'AmLegend'),
-            array('valueAxis', 'ValueAxis'),
+//             array('valueAxis', 'ValueAxis'),
             array('cursor', 'ChartCursor'),
             array('scrollbar', 'ChartScrollbar'),
         );

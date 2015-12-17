@@ -9,9 +9,15 @@ namespace AmCharts\Chart\Axis;
 
 use AmCharts\Chart\Setting;
 use AmCharts\Chart\Exception;
+use AmCharts\Utils;
 
 abstract class AbstractAxis
 {
+    /**
+     * @var string
+     */
+    private $id;
+    
     /**
      * @var Setting\Alpha
      */
@@ -63,6 +69,16 @@ abstract class AbstractAxis
     protected $labelRotation;
 
     /**
+     * @var string
+     */
+    protected $position;
+
+    /**
+     * @var string
+     */
+    protected $minPeriod;
+
+    /**
      * Length of the tick marks.
      *
      * @var integer
@@ -79,6 +95,42 @@ abstract class AbstractAxis
      */
     protected $minimum;
 
+    /**
+     * Returns chart id
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        if (!isset($this->id)) {
+            $this->generateId();
+        }
+
+        return $this->id;
+    }
+
+    /**
+     * Generate id
+     */
+    protected function generateId()
+    {
+        $id = 'axis_' . Utils::generateRandomKey();
+        $this->setId($id);
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string $id
+     * @return AbstractGraph
+     */
+    public function setId($id)
+    {
+        $this->id = (string) $id;
+
+        return $this;
+    }
+    
     /**
      * Sets axis alpha
      *
@@ -318,7 +370,7 @@ abstract class AbstractAxis
         return $this->gridThickness;
     }
     
-        /**
+    /**
      * Sets axis minimum
      *
      * @param float $minmum
@@ -339,6 +391,52 @@ abstract class AbstractAxis
     public function getMinimum()
     {
         return $this->minimum;
+    }
+    
+    /**
+     * Sets min period
+     *
+     * @param string $minimum
+     * @return AbstractAxis
+     */
+    public function setMinPeriod($minimum)
+    {
+        $this->minPeriod = $minimum;
+
+        return $this;
+    }
+
+    /**
+     * Returns grid thickness
+     *
+     * @return integer
+     */
+    public function getMinPeriod()
+    {
+        return $this->minPeriod;
+    }
+    
+    /**
+     * Sets axis position
+     *
+     * @param string $position
+     * @return AbstractAxis
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Returns position
+     *
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 
     /**
@@ -450,5 +548,10 @@ abstract class AbstractAxis
         }
 
         return $options;
+    }
+    
+    public function __clone()
+    {
+        $this->generateId();
     }
 }

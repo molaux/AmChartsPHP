@@ -8,6 +8,7 @@
 namespace AmCharts\Graph;
 
 use AmCharts\Chart\Setting;
+use AmCharts\Chart\Axis\AbstractAxis;
 use AmCharts\Graph\Exception;
 use AmCharts\Utils;
 
@@ -34,6 +35,11 @@ abstract class AbstractGraph implements GraphInterface
     protected $bullet;
 
     /**
+     * @var AbstractAxis
+     */
+    protected $valueAxis;
+
+    /**
      * @var Fields
      */
     protected $fields;
@@ -41,7 +47,7 @@ abstract class AbstractGraph implements GraphInterface
     /**
      * @var string
      */
-    protected $balloonText = '[[value]]';
+    protected $balloonText;
     
     /**
      * @var boolean
@@ -79,6 +85,20 @@ abstract class AbstractGraph implements GraphInterface
      */
     protected $lineThickness;
 
+    /**
+     * @var function
+     */
+    protected $balloonFunction;
+
+    public function setBalloonFunction($fcn) {
+      $this->balloonFunction = $fcn;
+      return $this;
+    }
+
+    public function getBalloonFunction() {
+      return $this->balloonFunction;
+    }
+    
     /**
      * Sets type
      *
@@ -191,7 +211,20 @@ abstract class AbstractGraph implements GraphInterface
 
         return $this->fields;
     }
+    
+    /**
+     * Sets value axis
+     *
+     * @param AbstractAxis $axis
+     * @return AbstractGraph
+     */
+    public function setValueAxis(AbstractAxis $axis)
+    {
+        $this->valueAxis = $axis;
 
+        return $this;
+    }
+    
     /**
      * Sets balloon text
      *
@@ -366,7 +399,11 @@ abstract class AbstractGraph implements GraphInterface
             if (isset($this->{$name})) {
                 if ($this->{$name} instanceof Setting\Alpha) {
                     $options[$name] = $this->{$name}->getValue();
+                } elseif ($this->{$name} instanceof AbstractAxis) {
+                    $options[$name] = $this->{$name}->getId();
                 } elseif (!is_object($this->{$name})) {
+                    $options[$name] = $this->{$name};
+                } elseif(method_exists($this->{$name}, '__toString')) {
                     $options[$name] = $this->{$name};
                 }
             }
