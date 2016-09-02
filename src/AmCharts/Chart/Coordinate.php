@@ -67,7 +67,7 @@ abstract class Coordinate extends AbstractChart
     /**
      * Axis\Value
      */
-    protected $valueAxis = [];
+    protected $valueAxes = [];
     
     /**
      * Constructor
@@ -102,7 +102,7 @@ abstract class Coordinate extends AbstractChart
      */
     public function addValueAxis(Axis\AbstractAxis $axis)
     {
-        $this->valueAxis[] = $axis;
+        $this->valueAxes[] = $axis;
         
         return $this;
     }
@@ -234,11 +234,11 @@ abstract class Coordinate extends AbstractChart
      */
     public function valueAxis($id = 0)
     {
-        if (!count($this->valueAxis)) {
-            $this->valueAxis[] = new Axis\Value();
+        if (!count($this->valueAxes)) {
+            $this->valueAxes[] = new Axis\Value();
         }
 
-        return $this->valueAxis[$id];
+        return $this->valueAxes[$id];
     }
     
     /**

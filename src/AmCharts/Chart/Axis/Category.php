@@ -75,24 +75,4 @@ class Category extends AbstractAxis
     public function getLabelFunction() {
       return $this->labelFunction;
     }
-
-    /**
-     * Returns object properties as array
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        $options = parent::toArray();
-
-        if ($options) {
-            $keys = array_keys($options);
-            array_walk($keys, function (&$value) {
-                $value = 'categoryAxis.' . $value;
-            });
-            $options = array_combine($keys, array_values($options));
-        }
-
-        return $options;
-    }
 }

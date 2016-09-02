@@ -168,13 +168,6 @@ class Serial extends Rectangular
             'columnWidth'   => $this->columnWidth
         );
         
-        if (isset($this->categoryAxis)) {
-            $options = $this->categoryAxis->toArray();
-            foreach ($options as $key => $value) {
-                $params[$key] = $value;
-            }
-        }
-        
         return $params;
     }
 }
