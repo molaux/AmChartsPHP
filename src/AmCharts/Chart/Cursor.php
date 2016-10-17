@@ -118,7 +118,21 @@ class Cursor
      * @var boolean 
      */
     protected $valueBalloonsEnabled;
-    
+
+    /**
+     * Specifies whether value lines are enabled.
+     * 
+     * @var boolean 
+     */
+    protected $valueLineEnabled;
+
+    /**
+     * Specifies whether valueLineBalloonEnabled are enabled.
+     * 
+     * @var boolean 
+     */
+    protected $valueLineBalloonEnabled;
+
     /**
      * Specifies if the user can zoom-in the chart.
      * If pan is set to true, zoomable is switched to false automatically.
@@ -459,7 +473,53 @@ class Cursor
     {
         return $this->valueBalloonsEnabled;
     }
+
+    /**
+     * Sets true if value balloon is enabled
+     * 
+     * @param boolean $enabled
+     * @return Cursor 
+     */
+    public function setValueLineBalloonEnabled($enabled = true)
+    {
+        $this->valueLineBalloonEnabled = (bool) $enabled;
+        
+        return $this;
+    }
     
+    /**
+     * Returns true if value balloon is enabled
+     * 
+     * @return boolean 
+     */
+    public function isValueLineBalloonEnabled()
+    {
+        return $this->valueLineBalloonEnabled;
+    }
+
+    /**
+     * Sets true if value balloon is enabled
+     * 
+     * @param boolean $enabled
+     * @return Cursor 
+     */
+    public function setValueLineEnabled($enabled = true)
+    {
+        $this->valueLineEnabled = (bool) $enabled;
+        
+        return $this;
+    }
+    
+    /**
+     * Returns true if value balloon is enabled
+     * 
+     * @return boolean 
+     */
+    public function isValueLineEnabled()
+    {
+        return $this->valueLineEnabled;
+    }
+
     /**
      * Sets true if chart is zoomable
      * 

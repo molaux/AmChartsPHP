@@ -439,7 +439,7 @@ abstract class AbstractChart
     public function getAttributes()
     {
         $attribProperties = array(
-            'legend', 'valueAxes', 'categoryAxis', 'graphs', 'cursor', 'scrollbar',
+            'legend', 'valueAxes', 'categoryAxis', 'graphs', 'chartCursor', 'scrollbar',
             'numberFormatter', 'percentFormatter',
         );
 

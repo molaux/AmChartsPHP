@@ -45,7 +45,7 @@ class Serial extends Rectangular
      * 
      * @var Cursor 
      */
-    protected $cursor;
+    protected $chartCursor;
 
     /**
      * Sets and returns chart cursor 
@@ -55,13 +55,13 @@ class Serial extends Rectangular
      */
     public function cursor($params = array())
     {
-        if (!isset($this->cursor)) {
-            $this->cursor = new Cursor();
+        if (!isset($this->chartCursor)) {
+            $this->chartCursor = new Cursor();
         }
         
-        $this->cursor->setParams($params);
+        $this->chartCursor->setParams($params);
 
-        return $this->cursor;
+        return $this->chartCursor;
     }
     
     /**
