@@ -421,7 +421,13 @@ abstract class AbstractChart
 
         $dataProvider = $this->getDataProvider();
         if (null !== $dataProvider) {
+//             echo "getParams:";
+//             echo serialize($dataProvider);
+//             echo "getParamsToJson:";
+//             echo $dataProvider->toJson();
             $params['dataProvider'] = $dataProvider->toJson();
+        } else {
+            throw new \Exception ("NO DP!");
         }
         
         if(null !== $this->dataDateFormat) {

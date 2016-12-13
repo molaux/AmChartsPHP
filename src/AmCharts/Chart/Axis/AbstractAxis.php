@@ -16,7 +16,7 @@ abstract class AbstractAxis
     /**
      * @var string
      */
-    private $id;
+    protected $id;
     
     /**
      * @var Setting\Alpha
@@ -527,8 +527,12 @@ abstract class AbstractAxis
     public function toArray()
     {
         $options = array();
-
         $fields = array_keys(get_object_vars($this));
+        
+        if (!isset($this->id)) {
+            $this->generateId();
+        }
+        
         foreach ($fields as $field) {
             if (isset($this->{$field})) {
                 if ($this->{$field} instanceof Setting\Alpha) {
@@ -536,11 +540,11 @@ abstract class AbstractAxis
                 } elseif ($this->{$field} instanceof Setting\Text) {
                     $titleOptions = $this->{$field}->toArray();
 
-                    $options = $options + array(
+                    $options = array_merge($options, array(
                         'title'         => $titleOptions['text'],
                         'titleColor'    => isset($titleOptions['color']) ? $titleOptions['color'] : null,
                         'titleFontSize' => isset($titleOptions['fontSize']) ? $titleOptions['fontSize'] : null,
-                    );
+                    ));
                 } else {
                     $options[$field] = $this->{$field};
                 }
